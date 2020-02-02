@@ -2,9 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import "index.scss";
+import Register from "./components/register/register"
 
 
 ReactDOM.render( <div>
-    <div> Hello </div> </div > ,
+    <Register/> </div > ,
 
     document.getElementById("root"));
