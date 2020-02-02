@@ -1,0 +1,288 @@
+*{
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+    font-size: 13px;
+    font-family: 'Open Sans', sans-serif;
+
+}
+
+input{
+   width: 100%;
+   height: 38px;
+   padding: 5px;
+   border-radius: 5px;
+   border: 1px solid #eae9ea;
+   
+}
+ 
+a {
+text-decoration: none;
+color: black;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button {
+    width: 120px;
+    height: 38px;
+    padding: 10px;
+   background: #4882ff;
+   border-radius: 5px; 
+   color: white;
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+button:disabled{
+    background: #f2f2f2;
+}
+
+.register-container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-end;
+    background: url("./imgs/register-background.jpg") center center no-repeat;
+    background-size: cover;
+}
+
+.register-form{
+    width: 400px;
+    background: #ffffff;
+    padding: 70px 50px;
+}
+
+.form-header{
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.form-header span{
+   font-size: 40px;
+   color: #7a8295;
+}
+
+.form-content{
+
+}
+
+.form-content>*{
+    margin-bottom: 10px;
+}
+
+.form-content .name-wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-content .name-wrapper .input-wrapper{
+    width: 49%;
+}
+
+.form-footer{
+display: flex;
+justify-content: space-between;
+}
+
+
+/* Code login */
+.login-container{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: flex-end;
+    background: url(./imgs/login-background.jpg) center center no-repeat;
+    background-size: cover;
+}
+
+.login-form{
+    width: 400px;
+    background: #ffffff;
+    padding: 50px 70px;
+}
+
+.message-error {
+    padding: 5px;
+    color: #ff0000;
+
+}
+
+.message-success{
+    padding: 5px;
+    color: #00ff00;
+}
+/* Coding page chat */
+
+
+.chat-container{
+    
+    height: calc(100vh - 38px);
+    display: flex;
+
+}
+
+
+.chat-container .message-container{
+    height: calc(100% - 38px);
+    overflow-y: scroll;
+}
+
+.message-chat span{
+    border-radius: 10px;
+    padding: 5px;
+    color: white;
+    background-color: #7ba0ee;
+
+}
+
+
+.message-container span{
+    display: inline-block;
+    min-width: 200px;
+    max-width: 50%;
+    word-break: break-word;
+}
+
+.message-chat.your{
+    text-align: right;
+}
+
+.message-chat.your span{
+    background-color:  rgb(212, 168, 140);
+    border: 1px solid  rgb(212, 168, 140);
+}
+
+.main-nav {
+    display: flex;
+    justify-content: flex-end;
+    background-color: #4882ff;
+    height: 38px;
+    color: white;
+    padding: 10px;
+}
+
+
+.chat-container .form-chat{
+    display:flex;
+    height: 38px;
+    justify-content: space-between;
+}
+
+.form-chat .input-wrapper{
+    width: calc(100% - 120px);
+}
+
+/* CODING ASIDE-LEFT */
+
+.form-add-conversation{
+    padding: 10px;
+    border: 1px solid #eae9ea;
+    border-radius: 5px;
+}
+
+.form-add-conversation >*{
+    margin-bottom: 10px;
+}
+#form-chat-input{
+    background-color: #e1e4eb;
+}
+
+.current-conversation{
+    width: 70%;
+
+}
+.aside-left{
+    width: 15%;
+}
+
+.aside-left .list-conversation .conversation .conversation-title{
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+
+}
+.aside-left .list-conversation .conversation .conversation-members{
+    font-size: 10px;
+    font-style: italic;
+}
+
+/* CODE ASIDE RIGHT */
+.aside-right{
+    width: 15%;
+    margin-bottom: 20px;
+}
+
+
+.aside-right>*{
+    margin-top: 60px;
+}
+.aside-right .list-infor>*{
+    margin-top: 15px;
+}
+
+.aside-right .title-currentconversation span{
+    font-size: 20px;
+    font-weight: bolder;
+    
+}
+
+.aside-right .email-user span{
+    font-size: 16px;
+
+}
+
+.aside-right .created-at span{
+    font-size: 10px;
+    font-style: italic;
+}
+
+
+
+/* loading */
+.loading-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+
+button.icon-btn {
+    padding : 0px;
+    width: 30px;
+    height: 20px;
+
+}
+
+@media screen and (max-width: 720px){
+    .list-conversation>*{
+        margin-bottom: 10px;
+    }
+   .conversation .conversation-members{
+       display: none;
+   }
+   .conversation{
+       border: 1px solid #4882ff;
+       color: #4882ff;
+       border-radius: 50%;
+       width: 50px;
+       height: 50px;
+   }
+
+   .conversation .conversation-title{
+       visibility: hidden;
+       padding: 15px;
+
+   }
+
+   .conversation .conversation-title::first-letter{
+       visibility: visible;
+   }
+}
+

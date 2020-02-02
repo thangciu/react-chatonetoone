@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import "index.scss";
-import Register from "./components/register/register"
+import Register from "./components/register/register.jsx";
 
 
 ReactDOM.render( <div>

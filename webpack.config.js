@@ -13,8 +13,8 @@ module.exports = {
     devServer: {
         contentBase: path.join(__dirname, 'react-src'),
 		compress: true,
-        port: 2029,
-        host: "192.168.19.117"
+        port: 2028,
+        // host: "192.168.19.117"
     },
     module: {
         rules: [{
