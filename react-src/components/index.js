@@ -38,11 +38,11 @@ class Main extends React.Component {
   }
   renderComponents = () => {
     return(
-       <div>
+       <>
          {this.state.register ? <Register callback = {this.callbackRegister}/>: '' }
          {this.state.login ? <Login callback = {this.callbackLogin} logIn = {this.logIn}/>: '' }
          {this.state.chat && !this.state.login && !this.state.register ? <Chat/>: '' }
-       </div>
+       </>
     )
   }
 

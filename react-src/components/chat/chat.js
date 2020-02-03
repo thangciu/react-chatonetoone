@@ -12,6 +12,8 @@ class Chat extends React.Component {
   }
 
   render() {
+    // console.log('app', app)
+
     return (
         <>
         <Header/>
