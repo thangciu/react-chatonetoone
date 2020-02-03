@@ -7,6 +7,10 @@ class Register extends React.Component {
   constructor(props){
     super(props);
   }
+  
+  callback = () => {
+      this.props.callback()
+  }
 
   render() {
     return (
@@ -45,7 +49,7 @@ class Register extends React.Component {
          <div id = "register-success" className = "message-success"> </div>
           <div className="form-footer">
               
-              <a id = "register-link" href="#">Already have an acount? Log in</a>
+              <a id = "register-link" href="#" onClick = {() => this.callback()}>Already have an acount? Log in</a>
               <button id = "register-submit-btn" type="sumit">Register</button>
           </div>
 
