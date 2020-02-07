@@ -2,9 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import "index.scss";
-import Main from "./components/index";
+import Main from "./components/main";
 // import * as firebase from 'firebase';
-// var app = firebase.initializeApp({ 
+// var app = firebase.initializeApp({
 //     apiKey: "AIzaSyDzbRIisWqR-LUQ6JJEp4CbL1kOYXkRzFs",
 //     authDomain: "ci30-5acdf.firebaseapp.com",
 //     databaseURL: "https://ci30-5acdf.firebaseio.com",
@@ -16,6 +16,7 @@ import Main from "./components/index";
 //  console.log('app', app)
 
 ReactDOM.render(
-    <Main/>  ,
+  <Main />,
 
-    document.getElementById("root"));
+  document.getElementById("root")
+);
