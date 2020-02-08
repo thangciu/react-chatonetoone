@@ -3,9 +3,8 @@ import ReactDOM from "react-dom";
 
 import Header from "../header/header";
 import Helper from "../constants/Helper";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBackspace, faPlus } from '@fortawesome/free-solid-svg-icons';
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBackspace, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 class AsideLeft extends React.Component {
   constructor(props) {
@@ -22,9 +21,7 @@ class AsideLeft extends React.Component {
     };
   }
 
-  componentDidMount = () => {
-   
-  };
+  componentDidMount = () => {};
 
   componentWillUpdate = () => {
     // this.getIdConversation(this.state.idConversation)
@@ -33,13 +30,8 @@ class AsideLeft extends React.Component {
   componentWillReceiveProps = nextProps => {
     this.setState({
       conversations: nextProps.conversations,
-      idConversation:
-        this.state.idConversation === ""
-          ? nextProps.conversations.length > 0
-            ? nextProps.conversations[0].id
-            : ""
-          : this.state.idConversation,
-      email: nextProps.email
+      idConversation: nextProps.idConversation,
+    email: nextProps.email
     });
   };
 
@@ -78,9 +70,9 @@ class AsideLeft extends React.Component {
   };
 
   addNewConversation = async () => {
-    Helper.setText("add-conversation-error","");
-   this.btnSubmitRef.current.disabled = true;
-        let check = false
+    Helper.setText("add-conversation-error", "");
+    this.btnSubmitRef.current.disabled = true;
+    let check = false;
     let inforAdd = {
       title: this.state.title,
       createdAt: new Date().toISOString(),
@@ -88,11 +80,11 @@ class AsideLeft extends React.Component {
       users: [this.state.frEmail, this.state.email]
     };
     this.state.conversations.map(mess => {
-      mess.users.map(user =>  {
+      mess.users.map(user => {
         if (user === this.state.frEmail) {
           this.getIdConversation(mess.id);
-           check = true;
-           return;
+          check = true;
+          return;
         }
       });
     });
@@ -114,19 +106,18 @@ class AsideLeft extends React.Component {
         Helper.setText("add-conversation-error", err.message);
       }
     }
-    
-    this.titleRef.current.value = '';
-    this.frEmailRef.current.value = '';
-    this.btnSubmitRef.current.disabled = false;
 
+    this.titleRef.current.value = "";
+    this.frEmailRef.current.value = "";
+    this.btnSubmitRef.current.disabled = false;
+    this.props.callbackSnapshot();
   };
 
   renderListConversation = () => {
     let conversations = this.state.conversations;
     let list = [];
     if (conversations && conversations.length > 0) {
-      // console.log(conversations)
-      conversations.map((mess, key) => {
+        conversations.map((mess, key) => {
         list.push(
           <div
             onClick={() => this.getIdConversation(mess.id)}
@@ -151,7 +142,7 @@ class AsideLeft extends React.Component {
   getIdConversation = id => {
     this.setState({ idConversation: id });
     setTimeout(() => {
-      this.props.idConversation(id);
+      this.props.callbackIdConversation(id);
     }, 0);
   };
 
@@ -166,7 +157,7 @@ class AsideLeft extends React.Component {
           <form id="form-add-conversation" className="form-add-conversation">
             <div className=" input-wrapper">
               <input
-              ref = {this.titleRef}
+                ref={this.titleRef}
                 onChange={this.getTitle}
                 id="input-add-title"
                 type="text"
@@ -178,7 +169,7 @@ class AsideLeft extends React.Component {
             </div>
             <div className=" input-wrapper">
               <input
-              ref = {this.frEmailRef}
+                ref={this.frEmailRef}
                 id="input-add-friend-email"
                 onChange={this.getEmail}
                 type="email"
@@ -189,14 +180,13 @@ class AsideLeft extends React.Component {
               {" "}
             </div>
             <button
-            ref = {this.btnSubmitRef}
+              ref={this.btnSubmitRef}
               onClick={this.submit}
               id="form-add"
               className="icon-btn"
               type="submit"
             >
-                        <FontAwesomeIcon icon={faPlus} />
-
+              <FontAwesomeIcon icon={faPlus} />
             </button>
             <div id="add-conversation-error" className="message-error">
               {" "}

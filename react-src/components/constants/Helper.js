@@ -32,7 +32,24 @@ const Helper = {
 
   setText(id, text) {
     document.getElementById(id).innerText = text;
-  }
+  },
+
+  getConversations: async email => {
+    let data = await firebase
+      .firestore()
+      .collection("conversations")
+      .where("users", "array-contains", email)
+      .get();
+      let conversations = [];
+        for (let doc of data.docs) {
+          let conversation = doc.data();
+          // console.log(conversation)
+          conversation.id = doc.id;
+          conversations.push(conversation);
+        }
+    return conversations;
+  },
+
 };
 
 export default Helper;

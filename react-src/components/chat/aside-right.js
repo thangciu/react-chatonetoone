@@ -5,8 +5,6 @@ import Header from "../header/header";
 import { faBackspace } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-
-
 class AsideRight extends React.Component {
   constructor(props){
     super(props);
@@ -14,8 +12,6 @@ class AsideRight extends React.Component {
     this.state = {conversations : [], idConversation : ""}
   }
   componentWillReceiveProps = (nextProps) =>{
-    // console.log('props', this.props)
-    // console.log('nextProps', nextProps.idConversation)
     this.setState({conversations : nextProps.conversations ,
        idConversation : nextProps.idConversation
       })
@@ -34,6 +30,9 @@ class AsideRight extends React.Component {
     // })
     .delete();
     this.btnDelRef.current.disabled = false;
+    setTimeout(() => {
+      this.props.callbackSnapshot();
+    }, 300);
 
   }
 
@@ -52,6 +51,7 @@ class AsideRight extends React.Component {
               <button ref = {this.btnDelRef} onClick = {() => this.delConversation(mess.id)} id = "btn-delete" className = "icon-btn" type = "submit">
               <FontAwesomeIcon icon = {faBackspace}/>
             </button>
+        <span>{mess.id}</span>
               </ div>
             );
         }
@@ -61,7 +61,6 @@ class AsideRight extends React.Component {
   }
 
   render() {
-    // console.log('this.state', this.state.idConversation)
     return (
         <>
        <div className = "aside-right">

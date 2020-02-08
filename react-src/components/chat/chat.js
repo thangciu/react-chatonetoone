@@ -15,12 +15,11 @@ class Chat extends React.Component {
       idConversation: "",
       conversations : [],
       message: "",
-      
     };
   }
 
   componentWillReceiveProps = (nextProps) =>{
-  this.setState({conversations : nextProps.conversations , idConversation : nextProps.conversations.length >0 ? nextProps.conversations[0].id : ''})
+  this.setState({conversations : nextProps.conversations , idConversation : nextProps.idConversation})
   }
 
   getMess = (e) => {
@@ -53,13 +52,15 @@ class Chat extends React.Component {
   }
    this.btnMessRef.current.disabled = false;
    this.messRef.current.value = "";
+   this.callbackSnapshot();
+  }
 
-
+  callbackSnapshot = () => {
+    this.props.callbackSnapshot();
   }
 
   renderMessages = () => {
     let self = this;
-    // console.log(this.state.idConversation)
     let conversations = this.state.conversations;
     let list = [];
     if (conversations && conversations.length > 0) {
@@ -90,14 +91,17 @@ class Chat extends React.Component {
   };
 
   render() {
+    
     return (
       <>
         <Header email={this.props.email} />
         <section className="chat-container">
           <AsideLeft
-            conversations={this.props.conversations}
-            idConversation={id => this.callbackId(id)}
+            conversations={this.state.conversations}
+            idConversation = {this.state.idConversation}
+            callbackIdConversation={id => this.callbackId(id)}
             email={this.props.email}
+            callbackSnapshot = {this.callbackSnapshot}
           />
           <div className="current-conversation">
             <div id="message-container" className="message-container">
@@ -120,8 +124,9 @@ class Chat extends React.Component {
             </form>
           </div>
           <AsideRight 
-           conversations={this.props.conversations}
+           conversations={this.state.conversations}
            idConversation={this.state.idConversation}
+           callbackSnapshot = {this.callbackSnapshot}
            />
         </section>
       </>
