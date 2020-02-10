@@ -70,17 +70,8 @@ class Main extends React.Component {
     let self = this;
     this.state.conversations.map(_id => idOld.push(_id.id));
     let conversations = await Helper.getConversations(this.state.email);
-    idNew.push(conversations.id)
-    // let conversations = [];
-    // for (let doc of data.docs) {
-    //   let conversation = doc.data();
-    //   // console.log(conversation)
-    //   idNew.push(doc.id);
-    //   conversation.id = doc.id;
-    //   conversations.push(conversation);
-    // }
-    console.log('old', idOld)
-    console.log('new', idNew)
+    console.log('1', conversations)
+    conversations.map(mess => idNew.push(mess.id))
     if (idOld.length - idNew.length === 1) {
       self.setState({
         conversations: conversations,
