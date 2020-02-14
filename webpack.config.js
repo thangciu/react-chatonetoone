@@ -4,7 +4,7 @@ module.exports = {
     entry: path.join(__dirname, 'react-src', 'index.js'),
     output: {
         path: path.join(__dirname, 'build'),
-        filename: 'photo-editor.js'
+        filename: 'chat.js'
     },
     mode: process.env.NODE_ENV || 'development',
     resolve: {

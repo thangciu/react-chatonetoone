@@ -316,3 +316,31 @@ button.icon-btn {
    }
 }
 
+#back-btn {
+    display: none;
+}
+
+@media screen and (max-width: 414px){
+    .aside-left{
+        display: none;
+    }
+    .aside-right{
+        display: none;
+    }
+    .current-conversation{
+        width: 100%;
+    }
+
+    .main-nav{
+        display: flex;
+        justify-content: center ;
+        justify-content: space-between;
+    }
+    #back-btn {
+        display: inline;
+        float: left;
+    }
+}
+
+
+

@@ -6,11 +6,6 @@ import Helper from "../constants/Helper";
 class Register extends React.Component {
   constructor(props) {
     super(props);
-    this.FirstName = React.createRef();
-    this.LastName = React.createRef();
-    this.Email = React.createRef();
-    this.Password = React.createRef();
-    this.cfPassword = React.createRef();
     this.onSubmit = React.createRef();
 
     this.state = {
@@ -121,7 +116,6 @@ class Register extends React.Component {
       console.error(err);
       Helper.setText("register-error", err.message);
     }
-
     this.setState({
       firstname: "",
       lastname: "",
@@ -129,27 +123,21 @@ class Register extends React.Component {
       password: "",
       cfpassword: ""
     });
-    this.FirstName.current.value = "";
-    this.LastName.current.value = "";
-    this.Email.current.value = "";
-    this.Password.current.value = "";
-    this.cfPassword.current.value = "";
     this.onSubmit.current.disabled = false;
   };
-
   render() {
     return (
       <section className="register-container">
         <form id="register-form" className="register-form">
           <h3 className="form-header">
-            <span>MindX Register</span>
+            <span> Register</span>
           </h3>
           <div className="form-content">
             <div className="name-wrapper">
               <div className="input-wrapper">
                 <input
                   type="text"
-                  ref={this.FirstName}
+                  value = {this.state.firstname}
                   onChange={this.getFirstName}
                   placeholder="Firstname"
                 />
@@ -159,7 +147,7 @@ class Register extends React.Component {
               </div>
               <div className="input-wrapper">
                 <input
-                  ref={this.LastName}
+                  value = {this.state.lastname}
                   onChange={this.getLastName}
                   type="text"
                   placeholder="Lastname"
@@ -172,7 +160,7 @@ class Register extends React.Component {
             <div className="input-wrapper">
               <input
                 onChange={this.getEmail}
-                ref={this.Email}
+                value = {this.state.email}
                 type="email"
                 placeholder="Email"
               />
@@ -184,7 +172,7 @@ class Register extends React.Component {
               <input
                 type="password"
                 onChange={this.getPassword}
-                ref={this.Password}
+                value = {this.state.password}
                 placeholder="Password"
               />
               <div id="password-error" className="message-error">
@@ -195,7 +183,7 @@ class Register extends React.Component {
               <input
                 type="password"
                 onChange={this.getCfPassword}
-                ref={this.cfPassword}
+                value = {this.state.cfpassword}
                 placeholder="Confirm Password"
               />
               <div id="confirmPassword-error" className="message-error">

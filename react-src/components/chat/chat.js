@@ -6,10 +6,11 @@ import AsideLeft from "./aside-left";
 import AsideRight from "./aside-right";
 import Helper from "../constants/Helper";
 
+
 class Chat extends React.Component {
   constructor(props) {
     super(props);
-    this.messRef = React.createRef();
+    // this.messRef = React.createRef();
     this.btnMessRef = React.createRef();
     this.state = {
       idConversation: "",
@@ -23,7 +24,7 @@ class Chat extends React.Component {
   }
 
   getMess = (e) => {
-      this.setState({message : e.target.value})
+      this.setState({message : e.target.value.trim()})
   }
 
   submit =  (e) => {
@@ -51,7 +52,7 @@ class Chat extends React.Component {
       console.log(err)
   }
    this.btnMessRef.current.disabled = false;
-   this.messRef.current.value = "";
+   this.setState({message : ''})
    this.callbackSnapshot();
   }
 
@@ -111,6 +112,7 @@ class Chat extends React.Component {
               <div className="input-wrapper">
                 <input
                 ref = {this.messRef}
+                value = {this.state.message}
                   id="form-chat-input"
                   className="input-message"
                   type="text"

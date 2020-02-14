@@ -51,7 +51,6 @@ class AsideRight extends React.Component {
               <button ref = {this.btnDelRef} onClick = {() => this.delConversation(mess.id)} id = "btn-delete" className = "icon-btn" type = "submit">
               <FontAwesomeIcon icon = {faBackspace}/>
             </button>
-        <span>{mess.id}</span>
               </ div>
             );
         }

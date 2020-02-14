@@ -5,17 +5,19 @@ import Register from "./register/register.jsx";
 import Login from "./login/login.js";
 import Chat from "./chat/chat";
 import Helper from "./constants/Helper.js";
+import Loading from "./header/loading.js"
 
 class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      login: false,
+      login: true,
       register: false,
       chat: false,
       email: "",
       conversations: [],
-      idConversation: ""
+      idConversation: "",
+      success : false,
     };
   }
   componentDidMount = () => {
@@ -28,23 +30,20 @@ class Main extends React.Component {
           chat: true,
           login: false,
           register: false,
-          email: user.email
+          email: user.email,
+          success: true
         });
         let conversations = await Helper.getConversations(user.email);
-        
-        self.setState({
-          conversations: conversations,
-          idConversation:
-            conversations && conversations.length > 0 ? conversations[0].id : ""
-        });
-      } else {
-        self.setState({
-          chat: false,
-          login: true,
-          register: false,
-          email: ""
-        });
+        if(conversations  && conversations.length > 0 ){
+          self.setState({
+            conversations: conversations,
+            idConversation: conversations[0].id ,
+          });
+        }
+      }else{
+        self.setState({success: true, login: true})
       }
+      
     }
   };
 
@@ -70,7 +69,6 @@ class Main extends React.Component {
     let self = this;
     this.state.conversations.map(_id => idOld.push(_id.id));
     let conversations = await Helper.getConversations(this.state.email);
-    console.log('1', conversations)
     conversations.map(mess => idNew.push(mess.id))
     if (idOld.length - idNew.length === 1) {
       self.setState({
@@ -86,32 +84,37 @@ class Main extends React.Component {
           });
         }
       });
+    }else{
+      self.setState({
+        conversations: conversations
+      })
     }
   };
 
   renderComponents = () => {
     return (
       <>
-        {this.state.register ? (
+       {!this.state.success  ? <Loading/> : ''}
+        {this.state.register &&  this.state.success ?
           <Register callback={this.callbackRegister} />
-        ) : (
+         : 
           ""
-        )}
-        {this.state.login ? (
+        }
+        {this.state.login &&  this.state.success ?
           <Login callback={this.callbackLogin} logIn={this.logIn} />
-        ) : (
+         : 
           ""
-        )}
-        {this.state.chat && !this.state.login && !this.state.register ? (
+        }
+        {this.state.chat && !this.state.login && !this.state.register && this.state.success ? 
           <Chat
             callbackSnapshot={this.callbackSnapshot}
             idConversation={this.state.idConversation}
             conversations={this.state.conversations}
             email={this.state.email}
           />
-        ) : (
+         : 
           ""
-        )}
+        }
       </>
     );
   };

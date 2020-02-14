@@ -9,8 +9,6 @@ import { faBackspace, faPlus } from "@fortawesome/free-solid-svg-icons";
 class AsideLeft extends React.Component {
   constructor(props) {
     super(props);
-    this.titleRef = React.createRef();
-    this.frEmailRef = React.createRef();
     this.btnSubmitRef = React.createRef();
 
     this.state = {
@@ -31,7 +29,7 @@ class AsideLeft extends React.Component {
     this.setState({
       conversations: nextProps.conversations,
       idConversation: nextProps.idConversation,
-    email: nextProps.email
+      email: nextProps.email
     });
   };
 
@@ -106,9 +104,8 @@ class AsideLeft extends React.Component {
         Helper.setText("add-conversation-error", err.message);
       }
     }
+    this.setState({title : '', frEmail : ''});
 
-    this.titleRef.current.value = "";
-    this.frEmailRef.current.value = "";
     this.btnSubmitRef.current.disabled = false;
     this.props.callbackSnapshot();
   };
@@ -157,7 +154,7 @@ class AsideLeft extends React.Component {
           <form id="form-add-conversation" className="form-add-conversation">
             <div className=" input-wrapper">
               <input
-                ref={this.titleRef}
+                value = {this.state.title}
                 onChange={this.getTitle}
                 id="input-add-title"
                 type="text"
@@ -169,7 +166,7 @@ class AsideLeft extends React.Component {
             </div>
             <div className=" input-wrapper">
               <input
-                ref={this.frEmailRef}
+                value = {this.state.frEmail}
                 id="input-add-friend-email"
                 onChange={this.getEmail}
                 type="email"

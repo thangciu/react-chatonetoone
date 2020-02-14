@@ -33,7 +33,7 @@ const Helper = {
   setText(id, text) {
     document.getElementById(id).innerText = text;
   },
-
+  
   getConversations: async email => {
     let data = await firebase
       .firestore()

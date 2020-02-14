@@ -3,21 +3,18 @@ import ReactDOM from "react-dom";
 import Helper from "../constants/Helper";
 
 class Login extends React.Component {
-_isMounted = false;
+  _isMounted = false;
 
   constructor(props) {
     super(props);
-    this.Email = React.createRef();
-    this.Password = React.createRef();
     this.onSubmit = React.createRef();
-
     this.state = {
       email: "",
       password: ""
     };
-  }
+  };
 
-  callback = (email) => {
+  callback = email => {
     this.props.callback(email);
   };
 
@@ -62,7 +59,6 @@ _isMounted = false;
   logIn = async () => {
     let email = this.state.email;
     let password = this.state.password;
-
     this.onSubmit.current.disabled = true;
 
     try {
@@ -77,22 +73,23 @@ _isMounted = false;
       }
     } catch (err) {
       console.error(err);
-      Helper.setText("login-error", "Sai email hoặc mật khẩu vui lòng kiểm tra lại!");
-      this.Email.current.value = "";
-      this.Password.current.value = "";
+      Helper.setText(
+        "login-error",
+        "Sai email hoặc mật khẩu vui lòng kiểm tra lại!"
+      );
       this.onSubmit.current.disabled = false;
       this.setState({ email: "", password: "" });
     }
     // if(this._isMounted)
   };
-//   componentDidMount() {
-//     this._isMounted = true;
-// }
-//     componentWillUnmount() {
-//       this._isMounted = false;
-//   }
+  //   componentDidMount() {
+  //     this._isMounted = true;
+  // }
+  //     componentWillUnmount() {
+  //       this._isMounted = false;
+  //   }
   render() {
-    return ( 
+    return (
       <section className="login-container">
         <form id="login-form" className="login-form">
           <h3 className="form-header">
@@ -102,7 +99,7 @@ _isMounted = false;
             <div className="form-input">
               <input
                 type="email"
-                ref={this.Email}
+                value={this.state.email}
                 onChange={this.getEmail}
                 placeholder="Email"
               />
@@ -113,7 +110,7 @@ _isMounted = false;
             <div className="form-input">
               <input
                 type="password"
-                ref={this.Password}
+                value={this.state.password}
                 onChange={this.getPassword}
                 placeholder="Password"
               />
@@ -142,6 +139,6 @@ _isMounted = false;
       </section>
     );
   }
-}
+};
 
 export default Login;
