@@ -16,6 +16,7 @@ class Chat extends React.Component {
       idConversation: "",
       conversations : [],
       message: "",
+      frEmail : '',
     };
   }
 
@@ -43,13 +44,9 @@ class Chat extends React.Component {
   sendMess = async (message) => {
     this.btnMessRef.current.disabled = true
     try {
-      await firebase.firestore().collection('conversations')
-          .doc(this.state.idConversation)
-          .update({
-              messages: firebase.firestore.FieldValue.arrayUnion(message)
-          })
+      await Helper.sendMess(message , this.state.idConversation)
   } catch (err) {
-      console.log(err)
+       console.log(err)
   }
    this.btnMessRef.current.disabled = false;
    this.setState({message : ''})
@@ -88,16 +85,20 @@ class Chat extends React.Component {
   };
 
   callbackId = id => {
-    this.setState({ idConversation: id });
+   this.props.callbackIdConversation(id);
   };
+  callbackFrEmail = frEmail => {
+    this.setState({frEmail : frEmail})
+  }
 
   render() {
     
     return (
       <>
-        <Header email={this.props.email} />
+        <Header conversations = {this.props.conversations} frEmail = {this.state.frEmail} email={this.props.email} />
         <section className="chat-container">
           <AsideLeft
+            callbackFrEmail  = {frEmail => this.callbackFrEmail(frEmail)}
             conversations={this.state.conversations}
             idConversation = {this.state.idConversation}
             callbackIdConversation={id => this.callbackId(id)}

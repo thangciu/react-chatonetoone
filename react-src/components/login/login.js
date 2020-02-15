@@ -62,9 +62,7 @@ class Login extends React.Component {
     this.onSubmit.current.disabled = true;
 
     try {
-      let result = await firebase
-        .auth()
-        .signInWithEmailAndPassword(email, password);
+      let result = await Helper.logIn(email, password);
       // if (result.user && result.user.emailVerified) {
       //     this.props.logIn();
       // }

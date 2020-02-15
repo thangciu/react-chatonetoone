@@ -290,45 +290,49 @@ button.icon-btn {
 
 }
 
-@media screen and (max-width: 720px){
-    .list-conversation>*{
-        margin-bottom: 10px;
-    }
-   .conversation .conversation-members{
-       display: none;
-   }
-   .conversation{
-       border: 1px solid #4882ff;
-       color: #4882ff;
-       border-radius: 50%;
-       width: 50px;
-       height: 50px;
-   }
+// @media screen and (max-width: 720px){
+//     .list-conversation>*{
+//         margin-bottom: 10px;
+//     }
+//    .conversation .conversation-members{
+//        display: none;
+//    }
+//    .conversation{
+//        border: 1px solid #4882ff;
+//        color: #4882ff;
+//        border-radius: 50%;
+//        width: 50px;
+//        height: 50px;
+//    }
 
-   .conversation .conversation-title{
-       visibility: hidden;
-       padding: 15px;
+//    .conversation .conversation-title{
+//        visibility: hidden;
+//        padding: 15px;
 
-   }
+//    }
 
-   .conversation .conversation-title::first-letter{
-       visibility: visible;
-   }
-}
+//    .conversation .conversation-title::first-letter{
+//        visibility: visible;
+//    }
+// }
 
 #back-btn {
     display: none;
 }
 
+#fremail-nav {
+    display: none;
+}
+
 @media screen and (max-width: 414px){
     .aside-left{
-        display: none;
+        width: 100%;
     }
     .aside-right{
         display: none;
     }
     .current-conversation{
-        width: 100%;
+        display: none;
     }
 
     .main-nav{
@@ -340,6 +344,11 @@ button.icon-btn {
         display: inline;
         float: left;
     }
+
+    #email-nav { display: none;}
+    #fremail-nav {display: inline;}
+    .register-form {width: 100%;}
+    .login-form {width: 100%;}
 }
 
 

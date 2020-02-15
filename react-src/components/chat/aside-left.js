@@ -89,17 +89,11 @@ class AsideLeft extends React.Component {
     if (!check) {
       try {
         // firebase.auth().fetchSignInMethodsForEmail()
-        let signInMethods = await firebase
-          .auth()
-          .fetchSignInMethodsForEmail(this.state.frEmail);
+        let signInMethods = await Helper.fetchSignInMethodsForEmail(this.state.frEmail);
         if (!signInMethods.length) {
           throw new Error("Email do not exists!");
         }
-        await firebase
-          .firestore()
-          .collection("conversations")
-          .add(inforAdd);
-        // view.showListConversation()
+        await Helper.addConversation(inforAdd);
       } catch (err) {
         Helper.setText("add-conversation-error", err.message);
       }
@@ -117,7 +111,7 @@ class AsideLeft extends React.Component {
         conversations.map((mess, key) => {
         list.push(
           <div
-            onClick={() => this.getIdConversation(mess.id)}
+            onClick={() => this.getIdConversation(mess.id,mess.users)}
             key={key}
             className={
               mess.id === this.state.idConversation
@@ -136,10 +130,16 @@ class AsideLeft extends React.Component {
     return list;
   };
 
-  getIdConversation = id => {
-    this.setState({ idConversation: id });
+  getIdConversation = (id, users) => {
+    console.log(users)
+    let frEmail = '';
+    if(users && users.length >0){
+       users.map(user => { if(user != this.props.email) frEmail = user})
+    }
+    console.log(frEmail)
     setTimeout(() => {
       this.props.callbackIdConversation(id);
+      this.props.callbackFrEmail(frEmail);
     }, 0);
   };
 

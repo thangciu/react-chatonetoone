@@ -18,10 +18,11 @@ class Main extends React.Component {
       conversations: [],
       idConversation: "",
       success : false,
+      
     };
   }
   componentDidMount = () => {
-    firebase.auth().onAuthStateChanged(authStateChangedHandler);
+    Helper.onAuthStateChanged(authStateChangedHandler);
     let self = this;
 
     async function authStateChangedHandler(user) {
@@ -43,6 +44,7 @@ class Main extends React.Component {
       }else{
         self.setState({success: true, login: true})
       }
+      
       
     }
   };
@@ -87,10 +89,12 @@ class Main extends React.Component {
     }else{
       self.setState({
         conversations: conversations
-      })
-    }
+      });
+    };
   };
-
+  callbackIdConversation = (id) => {
+    this.setState({idConversation : id})
+  }
   renderComponents = () => {
     return (
       <>
@@ -107,6 +111,7 @@ class Main extends React.Component {
         }
         {this.state.chat && !this.state.login && !this.state.register && this.state.success ? 
           <Chat
+            callbackIdConversation = {this.callbackIdConversation}
             callbackSnapshot={this.callbackSnapshot}
             idConversation={this.state.idConversation}
             conversations={this.state.conversations}

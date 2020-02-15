@@ -103,11 +103,8 @@ class Register extends React.Component {
     let displayName = this.state.firstname + this.state.lastname;
     this.onSubmit.current.disabled = true;
     try {
-      await firebase.auth().createUserWithEmailAndPassword(email, password);
-      firebase.auth().currentUser.updateProfile({
-        displayName: displayName
-      });
-      await firebase.auth().currentUser.sendEmailVerification();
+      await Helper.register(email, password , displayName)
+      await Helper.sendEmailVerify();
       Helper.setText(
         "register-success",
         "An confirm link has been sended to your email address!"
